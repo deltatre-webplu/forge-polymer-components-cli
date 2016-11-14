@@ -1,0 +1,17 @@
+{
+  "name": "forge-polymer-components-cli",
+  "version": "1.0.0",
+  "description": "Forge Polymer components command line interface",
+  "main": "fpc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WebPlu",
+  "license": "MIT",
+  "bin": {
+    "fpc": "./fpc.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
