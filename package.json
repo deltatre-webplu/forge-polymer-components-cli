@@ -12,6 +12,8 @@
     "fpc": "./fpc.js"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "columnify": "^1.5.4",
+    "commander": "^2.9.0",
+    "request": "^2.78.0"
   }
 }
