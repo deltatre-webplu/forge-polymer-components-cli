@@ -7,7 +7,7 @@ var program = require('commander');
 var fs = require('fs');
 var path = require('path');
 var request = require('request');
-var columnify = require('columnify')
+var columnify = require('columnify');
 
 program
 .version(version)
