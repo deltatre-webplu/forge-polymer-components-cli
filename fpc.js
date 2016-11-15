@@ -19,15 +19,15 @@ program
 
 program.on('init', function(componentName){
   if(componentName && componentName.length){
-    var dir = './' + componentName;
+    let  dir = './' + componentName;
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
     }
 
-    var initHtml = fs.readFileSync(__dirname + '/_init.html', {encoding: 'utf8'});
-    var importsHtml = fs.readFileSync(__dirname + '/_imports.html', {encoding: 'utf8'});
+    let initHtml = fs.readFileSync(__dirname + '/_init.html', {encoding: 'utf8'});
+    let importsHtml = fs.readFileSync(__dirname + '/_imports.html', {encoding: 'utf8'});
 
-    var currentPath = './' + componentName+ '/';
+    let currentPath = './' + componentName+ '/';
 
     initHtml = initHtml.replace(/##componentName##/gi, componentName);
     importsHtml = importsHtml.replace(/##serverPath##/gi, serverPath);
@@ -56,7 +56,7 @@ program.on('import', function(componentName){
     .then(function(isValid){
       if(isValid){
 
-        var importsHtml = readImportComponents();
+        let importsHtml = readImportComponents();
         importsHtml += getImportComponent(componentName);
         writeImportComponents(importsHtml);
 
@@ -73,14 +73,14 @@ program.on('import', function(componentName){
 
 program.on('list', function(){
   getAllComponents().then(function(components){
-    console.log(columnify(components, {columns: ['Component', 'Version'], config: {Component :{ minWidth: 40},Version: {align: 'right'}}}))
+    console.info(columnify(components, {columns: ['Component', 'Version'], config: {Component :{ minWidth: 40},Version: {align: 'right'}}}))
   });
 });
 
 program.parse(process.argv);
 
 function getImportComponent(componentName){
-  var importComponentString = '<link rel="import" href="##serverPath##/##componentName##/##componentName##.html">';
+  let  importComponentString = '<link rel="import" href="##serverPath##/##componentName##/##componentName##.html">';
 
   return '\n'+ importComponentString
   .replace(/##serverPath##/gi, serverPath)
@@ -107,8 +107,8 @@ function validateComponent (componentName){
       url: `http:${serverPath}/validate/${componentName}`
     }, function(error, response, body) {
       if (!error && response.statusCode == 200) {
-        var body = JSON.parse(body);
-        resolve(body);
+        let res = JSON.parse(body);
+        resolve(res);
       } else if (error) {
         reject(error);
       }
@@ -125,8 +125,8 @@ function getAllComponents(){
       url: `http:${serverPath}/list`
     }, function(error, response, body) {
       if (!error && response.statusCode == 200) {
-        var body = JSON.parse(body);
-        resolve(body);
+        let res = JSON.parse(body);
+        resolve(res);
       } else if (error) {
         reject(error);
       }
